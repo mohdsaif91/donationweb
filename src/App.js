@@ -1,28 +1,24 @@
 import React from "react";
-import "./App.scss";
-import { Link, Switch, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+
 import Login from "./Components/Login";
-import Admin from "./Components/Admin";
-import Logout from "./Components/Logout";
+import Admin from "./admincomponents/Admin";
+
+import "./App.scss";
 
 const App = () => {
   return (
-    <>
-      <div className="App">
-        <Login />
-        {/* <Admin />
-      <Logout /> */}
-        {/* <Login /> */}
-        {/* <Switch> */}
-        {/* <Routes>
-        <Route exact path="/" element={<Login />} />
-        <Route path="admin" element={<Admin />} />
-        <Route path="logout" element={<Logout />} />
-      </Routes> */}
-        {/* </Switch> */}
-        <h1>hello world</h1>
-      </div>
-    </>
+    <div className="App">
+      <BrowserRouter>
+        <Routes>
+          {/* admin route */}
+          <Route path="adminHome" element={<Admin />} />
+
+          {/* rest route */}
+          <Route path="/" element={<Login />} />
+        </Routes>
+      </BrowserRouter>
+    </div>
   );
 };
 
