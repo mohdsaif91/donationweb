@@ -5,20 +5,44 @@ import Login from "./Components/Login";
 import Admin from "./admincomponents/Admin";
 
 import "./App.scss";
+import Home from "./Components/Home";
+import Donate from "./Components/Donate";
+import { Layout } from "antd";
+import AdNavbar from "./admincomponents/AdNavbar";
+import OurNgos from "./Components/OurNgos";
+const { Header, Content, Footer } = Layout;
 
 const App = () => {
   return (
-    <div className="App">
-      <BrowserRouter>
-        <Routes>
-          {/* admin route */}
-          <Route path="adminHome" element={<Admin />} />
+    <>
+      {/* // <Layout className="layout"> */}
+      <Layout>
+        {/* <Header>
+        </Header> */}
+        <Content>
+          <div className="App">
+            <BrowserRouter>
+              <AdNavbar />
+              <Routes>
+                {/* admin route */}
+                <Route exact path="home" element={<Home />} />
+                <Route path="donate" element={<Donate />} />
+                <Route path="ourngos" element={<OurNgos />} />
 
-          {/* rest route */}
-          <Route path="/" element={<Login />} />
-        </Routes>
-      </BrowserRouter>
-    </div>
+                {/* <Route path="/" element={<Logout />} /> */}
+                {/* <Route path="/" element={<Home />} /> */}
+
+                <Route path="adminHome" element={<Admin />} />
+
+                {/* rest route */}
+                <Route path="/" element={<Login />} />
+              </Routes>
+            </BrowserRouter>
+          </div>
+        </Content>
+        <Footer></Footer>
+      </Layout>
+    </>
   );
 };
 
