@@ -15,22 +15,18 @@ const { Header, Content, Footer } = Layout;
 const App = () => {
   return (
     <>
-      {/* // <Layout className="layout"> */}
       <Layout>
         {/* <Header>
         </Header> */}
         <Content>
           <div className="App">
             <BrowserRouter>
-              <AdNavbar />
+              {/* <AdNavbar /> */}
               <Routes>
                 {/* admin route */}
                 <Route exact path="home" element={<Home />} />
                 <Route path="donate" element={<Donate />} />
                 <Route path="ourngos" element={<OurNgos />} />
-
-                {/* <Route path="/" element={<Logout />} /> */}
-                {/* <Route path="/" element={<Home />} /> */}
 
                 <Route path="adminHome" element={<Admin />} />
 

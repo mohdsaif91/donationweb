@@ -12,7 +12,7 @@ function Admin() {
     <>
       <Layout className="mainlayout">
         <Header>
-          {/* <AdNavbar /> */}
+          <AdNavbar />
           <h1>This is an Admin page.</h1>
           {/* <Home /> */}
         </Header>

@@ -1,10 +1,13 @@
 import React from "react";
+import AdNavbar from "../admincomponents/AdNavbar";
 
 import "./Home.scss";
 
 function Home() {
   return (
     <>
+      <AdNavbar />
+
       <div className="contents">
         <div className="content">
           <h1>Donation of this week</h1>
