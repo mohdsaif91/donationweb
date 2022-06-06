@@ -1,12 +1,14 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { adminSignup, loginAdmin } from "../RTK/Slice/adminSlice";
 
 import { emailValidator } from "../util";
 
 import "./Login.scss";
 
 const initialState = {
-  email: "",
+  userName: "",
   password: "",
 };
 
@@ -20,14 +22,21 @@ export default function Login() {
   const [valid, setValid] = useState({ ...initialvalid });
 
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const adminData = useSelector((state) => state.admin);
+
+  console.log(adminData);
+
+  useEffect(() => {
+    console.log(adminData.adminState.adminLogin);
+    if (adminData.adminState.adminLogin) {
+      navigate("/adminHome");
+    }
+  }, [adminData]);
 
   const submitForm = () => {
-    if (
-      auth.email === "admin@admin.com" &&
-      auth.password == "admin" &&
-      !valid.validFlag
-    ) {
-      navigate("/adminHome");
+    if (!valid.validFlag) {
+      dispatch(loginAdmin(auth));
     } else {
       setValid({
         ...valid,
@@ -38,7 +47,7 @@ export default function Login() {
   };
 
   const onChangeForm = (e) => {
-    if (e.target.name == "email") {
+    if (e.target.name == "userName") {
       setValid({
         ...valid,
         validFlag: !emailValidator(e.target.value),
@@ -56,9 +65,9 @@ export default function Login() {
           <input
             autoComplete="false"
             type="text"
-            name="email"
-            placeholder="Email"
-            value={auth.email}
+            name="userName"
+            placeholder="User name"
+            value={auth.userName}
             onChange={(e) => onChangeForm(e)}
           />
         </div>

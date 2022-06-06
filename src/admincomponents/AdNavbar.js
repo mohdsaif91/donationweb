@@ -1,12 +1,21 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { NavLink } from "react-router-dom";
+
 import Home from "../Components/Home";
 
 import "./AdNavbar.scss";
 
 function AdNavbar() {
   const [activeHam, setActiveHam] = useState(false);
+
+  const navigate = useNavigate();
+
+  const logoutUser = () => {
+    sessionStorage.removeItem("adminData");
+    navigate("/");
+  };
+
   const menuItems = (
     <>
       <a href="#">
@@ -19,8 +28,8 @@ function AdNavbar() {
         <Link to="/ourngos">Our NGOS</Link>
       </a>
       {/* <a href="#">Contact</a> */}
-      <a href="#">
-        <Link to="/">Logout</Link>
+      <a href="#" onClick={logoutUser()}>
+        Logout
       </a>
 
       {/* <ul>
