@@ -39,6 +39,16 @@ const adminSlice = createSlice({
       ? JSON.parse(sessionStorage.getItem("adminData"))
       : { adminLogin: false },
   },
+  reducers: {
+    logoutAdmin: (state, action) => {
+      return {
+        ...state,
+        adminState: {
+          adminLogin: false,
+        },
+      };
+    },
+  },
   extraReducers: {
     [loginAdmin.fulfilled]: (state, action) => {
       sessionStorage.setItem("adminData", JSON.stringify({ adminLogin: true }));
@@ -56,5 +66,6 @@ const adminSlice = createSlice({
   },
 });
 
+export const { logoutAdmin } = adminSlice.actions;
 const { reducer } = adminSlice;
 export default reducer;

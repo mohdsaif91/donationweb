@@ -1,8 +1,10 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { NavLink } from "react-router-dom";
 
 import Home from "../Components/Home";
+import { logoutAdmin } from "../RTK/Slice/adminSlice";
 
 import "./AdNavbar.scss";
 
@@ -10,9 +12,11 @@ function AdNavbar() {
   const [activeHam, setActiveHam] = useState(false);
 
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const logoutUser = () => {
     sessionStorage.removeItem("adminData");
+    dispatch(logoutAdmin());
     navigate("/");
   };
 

@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { adminSignup, loginAdmin } from "../RTK/Slice/adminSlice";
 
 import { emailValidator } from "../util";
+import { adminSignup, loginAdmin } from "../RTK/Slice/adminSlice";
 
 import "./Login.scss";
 
