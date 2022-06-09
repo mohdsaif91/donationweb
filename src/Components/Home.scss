@@ -11,13 +11,12 @@
 }
 
 .contents {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-gap: 10vw;
-  gap: 2vw;
-  margin-top: 8rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 
-  .content {
+  .content-card {
     display: flex;
     flex-direction: column;
     align-items: center;

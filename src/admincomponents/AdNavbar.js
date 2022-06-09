@@ -1,9 +1,15 @@
+import { Menu } from "antd";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import { NavLink } from "react-router-dom";
 
-import Home from "../Components/Home";
+import {
+  HomeOutlined,
+  DollarCircleOutlined,
+  GroupOutlined,
+  LoginOutlined,
+} from "@ant-design/icons";
+
 import { logoutAdmin } from "../RTK/Slice/adminSlice";
 
 import "./AdNavbar.scss";
@@ -15,62 +21,40 @@ function AdNavbar() {
   const dispatch = useDispatch();
 
   const logoutUser = () => {
+    console.log("hi");
     sessionStorage.removeItem("adminData");
     dispatch(logoutAdmin());
     navigate("/");
   };
 
-  const menuItems = (
-    <>
-      <a href="#">
-        <NavLink to="/home">Home</NavLink>
-      </a>
-      <a href="#">
-        <Link to="/donate">Donate</Link>
-      </a>
-      <a href="#">
-        <Link to="/ourngos">Our NGOS</Link>
-      </a>
-      {/* <a href="#">Contact</a> */}
-      <a href="#" onClick={logoutUser()}>
-        Logout
-      </a>
-
-      {/* <ul>
-      
-        <li className="nav-list">
-          <NavLink to="/home">Home</NavLink>
-        </li>
-        <li className="nav-list">
-          <NavLink to="/donate">Donate</NavLink>
-        </li>
-        <li>
-          <NavLink to="/our ngos">Our NGOS</NavLink>
-        </li>
-        <li className="nav-list">
-          <NavLink to="/">Logout</NavLink>
-        </li>
-      </ul> */}
-    </>
-  );
   return (
-    <div className="navbar-container">
-      <nav>
-        <div className="nav-container">
-          <h1 className="nav-brand">Donation-Web</h1>
-          <div className="menu">{menuItems}</div>
-          <button
-            className={activeHam ? "hamburger active-hamburger" : "hamburger"}
-            onClick={() => setActiveHam(!activeHam)}
-          >
-            <span></span>
-            <span></span>
-            <span></span>
-          </button>
-        </div>
-      </nav>
-      {activeHam && <div className="nav-dropdown">{menuItems}</div>}
-    </div>
+    <React.Fragment>
+      <div className="logo" />
+      <Menu theme="dark" mode="inline" defaultSelectedKeys={["/adminhome"]}>
+        <Menu.Item key="/adminhome">
+          <Link to="/adminhome">
+            <HomeOutlined />
+            <span className="nav-text">Home</span>
+          </Link>
+        </Menu.Item>
+        <Menu.Item key="/donate">
+          <Link to="/donate">
+            <DollarCircleOutlined />
+            <span className="nav-text">Donate</span>
+          </Link>
+        </Menu.Item>
+        <Menu.Item key="/ourngos">
+          <Link to="/ourngos">
+            <GroupOutlined />
+            <span className="nav-text">Our NGOS</span>
+          </Link>
+        </Menu.Item>
+        <Menu.Item key="/logout" onClick={logoutUser}>
+          <LoginOutlined />
+          <span className="nav-text">Logout</span>
+        </Menu.Item>
+      </Menu>
+    </React.Fragment>
   );
 }
 export default AdNavbar;
