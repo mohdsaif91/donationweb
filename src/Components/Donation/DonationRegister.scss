@@ -25,6 +25,15 @@
   border-radius: 31px;
 }
 
+.form-card {
+  -webkit-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+  box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+  border-radius: 8px;
+  width: 500px;
+  background-color: #efeeeff0;
+}
+
 // form {
 //   // display: flex;
 //   // flex-direction: column;

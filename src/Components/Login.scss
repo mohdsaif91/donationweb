@@ -18,30 +18,29 @@
       font-weight: 600;
       margin: 0 0 24px 0;
     }
+  }
+  .form-element {
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    align-items: flex-start;
+    margin-bottom: 32px;
+    .form-label {
+      padding: 4px 8px;
+      margin-bottom: 8px;
+    }
+    input {
+      background: #2f3032;
+      color: #ffffff;
+      padding: 8px 4px;
+      width: 100%;
+      font-size: 18px;
+      border-top: none;
+      border-left: none;
+      border-right: none;
 
-    .form-element {
-      display: flex;
-      flex-direction: column;
-      justify-content: left;
-      align-items: flex-start;
-      margin-bottom: 32px;
-      .form-label {
-        padding: 4px 8px;
-        margin-bottom: 8px;
-      }
-      input {
-        background: #2f3032;
-        color: #ffffff;
-        padding: 8px 4px;
-        width: 100%;
-        font-size: 18px;
-        border-top: none;
-        border-left: none;
-        border-right: none;
-
-        &:focus {
-          outline: none;
-        }
+      &:focus {
+        outline: none;
       }
     }
   }

@@ -4,6 +4,8 @@ import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 
 import {
+  EyeOutlined,
+  EditOutlined,
   HomeOutlined,
   DollarCircleOutlined,
   GroupOutlined,
@@ -14,6 +16,8 @@ import { logoutAdmin } from "../RTK/Slice/adminSlice";
 
 import "./AdNavbar.scss";
 
+const { SubMenu } = Menu;
+
 function AdNavbar() {
   const [activeHam, setActiveHam] = useState(false);
 
@@ -21,7 +25,6 @@ function AdNavbar() {
   const dispatch = useDispatch();
 
   const logoutUser = () => {
-    console.log("hi");
     sessionStorage.removeItem("adminData");
     dispatch(logoutAdmin());
     navigate("/");
@@ -37,12 +40,20 @@ function AdNavbar() {
             <span className="nav-text">Home</span>
           </Link>
         </Menu.Item>
-        <Menu.Item key="/donate">
-          <Link to="/donate">
-            <DollarCircleOutlined />
-            <span className="nav-text">Donate</span>
-          </Link>
-        </Menu.Item>
+        <SubMenu icon={<DollarCircleOutlined />} title="Donation">
+          <Menu.Item key="/createDonation">
+            <Link to="/createDonation">
+              <EditOutlined />
+              <span className="nav-text">Create Donation</span>
+            </Link>
+          </Menu.Item>
+          <Menu.Item key="/donationList">
+            <Link to="/donationList">
+              <EyeOutlined />
+              <span className="nav-text">Donation List</span>
+            </Link>
+          </Menu.Item>
+        </SubMenu>
         <Menu.Item key="/ourngos">
           <Link to="/ourngos">
             <GroupOutlined />

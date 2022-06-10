@@ -1,16 +1,21 @@
-import Login from "./Components/Login";
-import Home from "./Components/Home";
-import Donate from "./Components/Donate";
-import AdNavbar from "./admincomponents/AdNavbar";
-import OurNgos from "./Components/OurNgos";
-import Navbar from "./Components/Navbar";
-
 import "./App.scss";
 
-import React, { useState } from "react";
+import React, { useState, Suspense } from "react";
 import { Route, Routes } from "react-router-dom";
 import { Layout } from "antd";
 import { useSelector } from "react-redux";
+
+const Login = React.lazy(() => import("./Components/Login"));
+const Home = React.lazy(() => import("./Components/Home"));
+const CreateDonation = React.lazy(() =>
+  import("./Components/Donation/DonationRegister")
+);
+const AdNavbar = React.lazy(() => import("./admincomponents/AdNavbar"));
+const OurNgos = React.lazy(() => import("./Components/OurNgos"));
+const Navbar = React.lazy(() => import("./Components/Navbar"));
+const DonationList = React.lazy(() =>
+  import("./Components/Donation/DonationList")
+);
 
 const { Header, Content, Footer, Sider } = Layout;
 
@@ -21,8 +26,10 @@ const App = () => {
 
   return (
     <Layout>
-      <Header className="header">
-        <Navbar />
+      <Header className="main-header">
+        <Suspense fallback={<div>Loading</div>}>
+          <Navbar />
+        </Suspense>
       </Header>
       <Layout hasSider={adminData.adminState.adminLogin}>
         {adminData.adminState.adminLogin && (
@@ -39,6 +46,7 @@ const App = () => {
         <Layout
           style={{
             padding: "0 24px 24px",
+            height: "100vh",
           }}
         >
           <Content
@@ -50,12 +58,48 @@ const App = () => {
           >
             <Routes>
               {/* admin route */}
-              <Route path="donate" element={<Donate />} />
-              <Route path="ourngos" element={<OurNgos />} />
-              <Route path="adminHome" element={<Home />} />
+              <Route
+                path="createDonation"
+                element={
+                  <Suspense fallback={<div>Loading</div>}>
+                    <CreateDonation />
+                  </Suspense>
+                }
+              />
+              <Route
+                path="donationList"
+                element={
+                  <Suspense fallback={<div>Loading</div>}>
+                    <DonationList />
+                  </Suspense>
+                }
+              />
+              <Route
+                path="ourngos"
+                element={
+                  <Suspense fallback={<div>Loading</div>}>
+                    <OurNgos />
+                  </Suspense>
+                }
+              />
+              <Route
+                path="adminHome"
+                element={
+                  <Suspense fallback={<div>Loading</div>}>
+                    <Home />
+                  </Suspense>
+                }
+              />
 
               {/* rest route */}
-              <Route path="/" element={<Login />} />
+              <Route
+                path="/"
+                element={
+                  <Suspense fallback={<div>Loading</div>}>
+                    <Login />
+                  </Suspense>
+                }
+              />
             </Routes>
           </Content>
         </Layout>
