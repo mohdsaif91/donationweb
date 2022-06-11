@@ -1,0 +1,18 @@
+.ant-table-thead > tr > th {
+  position: relative;
+  color: rgba(0, 0, 0, 0.85);
+  font-weight: 600;
+  text-align: left;
+  background: #1890ff5e;
+  border-bottom: 2px solid #000000;
+  transition: background 0.3s ease;
+}
+
+// element.style {
+// }
+.ant-table-tbody > tr > td {
+  border-bottom: 2px solid #191a1b;
+  color: #090808b3;
+  font-weight: 500;
+  transition: background 0.3s;
+}
