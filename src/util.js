@@ -8,4 +8,5 @@ export const getFormData = (data) => {
     console.log(key, data[key]);
     formData.append(key, data[key]);
   });
+  return formData;
 };
