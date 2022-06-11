@@ -8,14 +8,14 @@ import { useSelector } from "react-redux";
 const Login = React.lazy(() => import("./Components/Login"));
 const Home = React.lazy(() => import("./Components/Home"));
 const CreateDonation = React.lazy(() =>
-  import("./Components/Donation/DonationRegister")
+  import("./admincomponents/Donation/DonationRegister")
+);
+const DonationList = React.lazy(() =>
+  import("./admincomponents/Donation/DonationList")
 );
 const AdNavbar = React.lazy(() => import("./admincomponents/AdNavbar"));
 const OurNgos = React.lazy(() => import("./Components/OurNgos"));
 const Navbar = React.lazy(() => import("./Components/Navbar"));
-const DonationList = React.lazy(() =>
-  import("./Components/Donation/DonationList")
-);
 
 const { Header, Content, Footer, Sider } = Layout;
 
