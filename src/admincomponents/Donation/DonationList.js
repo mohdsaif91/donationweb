@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Space, Table, Tag } from "antd";
 import "./donationList.scss";
+import { useDispatch } from "react-redux";
+import { getAllDonationMethod } from "../../RTK/Slice/donationSlice";
 
 function DonationList() {
   const { Column, ColumnGroup } = Table;
@@ -64,6 +66,16 @@ function DonationList() {
       // tags: ["cool", "teacher"],
     },
   ];
+
+  const diapatch = useDispatch();
+
+  useEffect(() => {
+    getAllDonation();
+  }, []);
+
+  const getAllDonation = () => {
+    diapatch(getAllDonationMethod());
+  };
 
   return (
     <>

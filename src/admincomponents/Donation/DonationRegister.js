@@ -51,14 +51,8 @@ function DonationRegister() {
     setFormvalue({ ...formvalue, [name]: value });
   };
 
-  // const handleUpload = (obj) => {
-  //   console.log(obj.fileList[0]);
-  //   setFormvalue({ ...formvalue, recevierImages: obj.fileList[0] });
-  // };
-
   const handleUpload = (e) => {
-    // console.log(obj.fileList[0]);
-    setFormvalue({ ...formvalue, recevierImages: e.target.files });
+    setFormvalue({ ...formvalue, recevierImages: e.target.files[0] });
   };
 
   const submitData = () => {
@@ -171,7 +165,7 @@ function DonationRegister() {
                 />
               </Form.Item>
               <Form.Item name="donationImage" label="Upload Image">
-                <input type="file" onChange={handleUpload} />
+                <input type="file" onChange={(e) => handleUpload(e)} />
                 {/* <Upload
                   onChange={handleUpload}
                   name="uploadImage"
@@ -179,7 +173,7 @@ function DonationRegister() {
                   beforeUpload={() => false}
                 >
                   <Button icon={<UploadOutlined />}>Click to upload</Button>
-                </Upload> */}
+              </Upload>*/}
               </Form.Item>
             </Form>
             <Button onClick={submitData} type="primary">

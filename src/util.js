@@ -4,9 +4,14 @@ export function emailValidator(value) {
 
 export const getFormData = (data) => {
   const formData = new FormData();
-  Object.keys(data).map((key) => {
-    console.log(key, data[key]);
+  Object.keys(data).forEach((key) => {
+    // if (key == "recevierImages") {
+    //   data[key].map((m) => {
+    //     formData.append(key, m);
+    //   });
+    // } else {
     formData.append(key, data[key]);
+    // }
   });
   return formData;
 };

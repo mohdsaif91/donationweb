@@ -10,6 +10,15 @@ const createDonationApi = (data) => {
   return axiosCall({ ...apiData });
 };
 
+const getAllDonationApi = () => {
+  const apiData = {
+    url: "/donation",
+    method: "get",
+  };
+  return axiosCall({ ...apiData });
+};
+
 export const donationService = {
   createDonationApi,
+  getAllDonationApi,
 };

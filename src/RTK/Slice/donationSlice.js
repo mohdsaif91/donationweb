@@ -16,12 +16,38 @@ export const createDonation = createAsyncThunk(
   }
 );
 
+export const getAllDonationMethod = createAsyncThunk(
+  "donationSlice/getAllDonation",
+  (data, { dispatch, rejectWithValue }) => {
+    try {
+      dispatch(loadingIndicator(true));
+      const res = donationService.getAllDonationApi();
+    } catch (error) {
+      return rejectWithValue(error);
+    }
+  }
+);
+
 const donationSlice = createSlice({
   name: "donationSlice",
   initialState: {},
   extraReducers: {
     [createDonation.fulfilled]: (state, action) => {},
     [createDonation.rejected]: (state, action) => {},
+    [getAllDonationMethod.fulfilled]: (state, action) => {
+      return {
+        ...state,
+        error: false,
+        donation: action.payload,
+      };
+    },
+    [getAllDonationMethod.rejected]: (state, action) => {
+      return {
+        ...state,
+        error: true,
+        errorMessage: action.payload,
+      };
+    },
   },
 });
 
