@@ -1,20 +1,34 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Space, Table, Tag } from "antd";
 import "./donationList.scss";
-import { useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+// import { donationSlice } from "../Donation/donationSlice";
+import DonatinRegister from "../Donation/DonationRegister";
 import { getAllDonationMethod } from "../../RTK/Slice/donationSlice";
 
 function DonationList() {
+  const tabledata = useSelector((state) => state.donation.donationSlice);
+  console.log(tabledata);
+  const dispatch = useDispatch();
+
   const { Column, ColumnGroup } = Table;
-  // const [bottom, setBottom] = useState("bottomCenter");
-  // const bottomOptions = [
-  //   {
-  //     label: "bottomCenter",
-  //     value: "bottomCenter",
-  //   },
-  // ];
 
   const data = [
+    // recevierName: "",
+    // recevierImages: "",
+    // requiredAmount: "",
+    // recevierSummary: "",
+    // recevierAddress: "",
+    // reciverPhoneNumber: "",
+    // {
+    //   key: "1",
+    //   srno: "1",
+    //   name: "recevierName",
+    //   amount: 1500,
+    //   phone: 7854855874,
+    //   summary: "purpose of your payment ",
+    //   address: "New York No. 1 Lake Park",
+    // },
     {
       key: "1",
       srno: "1",
@@ -23,7 +37,6 @@ function DonationList() {
       phone: 7854855874,
       summary: "purpose of your payment ",
       address: "New York No. 1 Lake Park",
-      // tags: ["nice", "developer"],
     },
     {
       key: "2",
@@ -33,7 +46,6 @@ function DonationList() {
       phone: 7854855874,
       summary: "purpose of your payment ",
       address: "London No. 1 Lake Park",
-      // tags: ["loser"],
     },
     {
       key: "3",
@@ -43,7 +55,6 @@ function DonationList() {
       phone: 7854855874,
       summary: "purpose of your payment ",
       address: "Sidney No. 1 Lake Park",
-      // tags: ["cool", "teacher"],
     },
     {
       key: "3",
@@ -53,7 +64,6 @@ function DonationList() {
       phone: 7854855874,
       summary: "purpose of your payment ",
       address: "Sidney No. 1 Lake Park",
-      // tags: ["cool", "teacher"],
     },
     {
       key: "3",
@@ -63,7 +73,6 @@ function DonationList() {
       phone: 7854855874,
       summary: "purpose of your payment ",
       address: "Sidney No. 1 Lake Park",
-      // tags: ["cool", "teacher"],
     },
   ];
 
@@ -75,65 +84,54 @@ function DonationList() {
 
   const getAllDonation = () => {
     diapatch(getAllDonationMethod());
+    // console.log(getAllDonation);
   };
 
   return (
     <>
-      <Table
-        dataSource={data}
-        style={{
-          columns: "green",
-          margin: 15,
-          color: "blue",
-          border: "4px solid red",
-        }}
-      >
-        {/* <ColumnGroup title="Name">
-          <Column title="First Name" dataIndex="firstName" key="firstName" />
-          <Column title="Last Name" dataIndex="lastName" key="lastName" />
-        </ColumnGroup> */}
-        <Column
+      {/* <div>
+        <button onClick={getAllDonation}>submit</button>
+      </div> */}
+      <form action="">
+        <Table
+          dataSource={data}
           style={{
-            // columns: "green",
+            columns: "green",
+            margin: 15,
             color: "blue",
-            fontsize: 855,
-            margin: 777,
-            borderbottom: "9px solid red",
+            border: "4px solid red",
           }}
-          title="SrNo."
-          dataIndex="srno"
-          key="srno"
-        />
-        <Column title="FullName" dataIndex="name" key="name" />
-        <Column title="Amount" dataIndex="amount" key="amount" />
-        <Column title="PhoneNumber" dataIndex="phone" key="phone" />
-        <Column title="Summary" dataIndex="summary" key="summary" />
-        <Column title="Address" dataIndex="address" key="address" />
-        {/* <Column
-          title="Tags"
-          dataIndex="tags"
-          key="tags"
-          render={(tags) => (
-            <>
-              {tags.map((tag) => (
-                <Tag color="blue" key={tag}>
-                  {tag}
-                </Tag>
-              ))}
-            </>
-          )}
-        /> */}
-        <Column
-          title="Action"
-          key="action"
-          render={(_, record) => (
-            <Space size="middle">
-              <a>Edit {record.lastName}</a>
-              <a>Delete</a>
-            </Space>
-          )}
-        />
-      </Table>
+        >
+          <Column
+            style={{
+              // columns: "green",
+              color: "blue",
+              fontsize: 855,
+              margin: 777,
+              borderbottom: "9px solid red",
+            }}
+            title="SrNo."
+            dataIndex="srno"
+            key="srno"
+          />
+          <Column title="FullName" dataIndex="name" key="name" />
+          <Column title="Amount" dataIndex="amount" key="amount" />
+          <Column title="PhoneNumber" dataIndex="phone" key="phone" />
+          <Column title="Summary" dataIndex="summary" key="summary" />
+          <Column title="Address" dataIndex="address" key="address" />
+
+          <Column
+            title="Action"
+            key="action"
+            render={(_, record) => (
+              <Space size="middle">
+                <a>Edit {record.lastName}</a>
+                <a>Delete</a>
+              </Space>
+            )}
+          />
+        </Table>
+      </form>
     </>
   );
 }

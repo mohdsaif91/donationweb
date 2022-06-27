@@ -30,7 +30,37 @@ export const getAllDonationMethod = createAsyncThunk(
 
 const donationSlice = createSlice({
   name: "donationSlice",
-  initialState: {},
+  initialState: {
+    // tablelist: [
+    //   {
+    //     key: "1",
+    //     srno: "1",
+    //     name: "sam",
+    //     amount: 1500,
+    //     phone: 7854855874,
+    //     summary: "purpose of your payment ",
+    //     address: "New York No. 1 Lake Park",
+    //   },
+    //   {
+    //     key: "2",
+    //     srno: "2",
+    //     name: "harry",
+    //     amount: 1500,
+    //     phone: 7854855874,
+    //     summary: "purpose of your payment ",
+    //     address: "London No. 1 Lake Park",
+    //   },
+    //   {
+    //     key: "3",
+    //     srno: "3",
+    //     name: "joy",
+    //     amount: 1500,
+    //     phone: 7854855874,
+    //     summary: "purpose of your payment ",
+    //     address: "Sidney No. 1 Lake Park",
+    //   },
+    // ],
+  },
   extraReducers: {
     [createDonation.fulfilled]: (state, action) => {},
     [createDonation.rejected]: (state, action) => {},
