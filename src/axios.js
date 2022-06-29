@@ -15,7 +15,7 @@ export const axiosCall = async (payload) => {
     return await axiosClient(payload.url, {
       method: payload.method,
       data: payload.data,
-    });
+    })
   } catch (error) {
     return error;
   }

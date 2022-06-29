@@ -11,7 +11,7 @@ const CreateDonation = React.lazy(() =>
   import("./admincomponents/Donation/DonationRegister")
 );
 const DonationList = React.lazy(() =>
-  import("./admincomponents/Donation/DonationList")
+  import("./admincomponents/Donation/DonationList/DonationList")
 );
 const AdNavbar = React.lazy(() => import("./admincomponents/AdNavbar"));
 const OurNgos = React.lazy(() => import("./Components/OurNgos"));

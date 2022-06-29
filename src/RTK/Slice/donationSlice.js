@@ -18,10 +18,17 @@ export const createDonation = createAsyncThunk(
 
 export const getAllDonationMethod = createAsyncThunk(
   "donationSlice/getAllDonation",
-  (data, { dispatch, rejectWithValue }) => {
+  (data, { dispatch, fulfillWithValue, rejectWithValue }) => {
     try {
       dispatch(loadingIndicator(true));
-      const res = donationService.getAllDonationApi();
+      return donationService.getAllDonationApi().then((res) => {
+        if (res.status === 200) {
+          return fulfillWithValue(res.data);
+        }
+        if (res.status === 401 || res.status === 404) {
+          return rejectWithValue(res.data.error);
+        }
+      });
     } catch (error) {
       return rejectWithValue(error);
     }
@@ -30,37 +37,7 @@ export const getAllDonationMethod = createAsyncThunk(
 
 const donationSlice = createSlice({
   name: "donationSlice",
-  initialState: {
-    // tablelist: [
-    //   {
-    //     key: "1",
-    //     srno: "1",
-    //     name: "sam",
-    //     amount: 1500,
-    //     phone: 7854855874,
-    //     summary: "purpose of your payment ",
-    //     address: "New York No. 1 Lake Park",
-    //   },
-    //   {
-    //     key: "2",
-    //     srno: "2",
-    //     name: "harry",
-    //     amount: 1500,
-    //     phone: 7854855874,
-    //     summary: "purpose of your payment ",
-    //     address: "London No. 1 Lake Park",
-    //   },
-    //   {
-    //     key: "3",
-    //     srno: "3",
-    //     name: "joy",
-    //     amount: 1500,
-    //     phone: 7854855874,
-    //     summary: "purpose of your payment ",
-    //     address: "Sidney No. 1 Lake Park",
-    //   },
-    // ],
-  },
+  initialState: {},
   extraReducers: {
     [createDonation.fulfilled]: (state, action) => {},
     [createDonation.rejected]: (state, action) => {},
